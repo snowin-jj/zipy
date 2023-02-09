@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 export function middleware(request: NextRequest) {
 	const token = request.cookies.has('next-auth.session-token');
 
-	if (!token) return NextResponse.redirect(new URL('/signin', request.url));
+	if (!token) return NextResponse.redirect(new URL('/login', request.url));
 }
 
 // See "Matching Paths" below to learn more

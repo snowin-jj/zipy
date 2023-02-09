@@ -26,7 +26,7 @@ const Header = () => {
 							<Button handleClick={() => signOut()}>Sign Out</Button>
 						</>
 					) : (
-						<Button isLink={true} to='/signin'>
+						<Button isLink={true} to='/login'>
 							Sign In
 						</Button>
 					)}
