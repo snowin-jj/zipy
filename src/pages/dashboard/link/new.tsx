@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { createLink } from '@/lib/mutations';
 import InputGroup from '@/components/general/InputGroup';
@@ -13,7 +13,9 @@ const CraeteLink = () => {
 	const { changeErrorState } = useError();
 	const { data: session } = useSession();
 
-	if (!session) router.push('/login');
+	useEffect(() => {
+		if (!session) router.push('/login');
+	}, [router, session]);
 
 	const handleCreateLink = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
