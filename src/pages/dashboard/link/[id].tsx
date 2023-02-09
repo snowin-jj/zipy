@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useSession } from 'next-auth/react';
+import { useError } from '@/context/error';
 import { MdOutlineClose, MdOutlineModeEditOutline } from 'react-icons/md';
 import { updateLink, deleteLink } from '@/lib/mutations';
 import { useLink } from '@/lib/hooks';
@@ -9,7 +11,6 @@ import PageLoader from '@/components/general/PageLoader';
 import Spinner from '@/components/general/Spinner';
 import { HiOutlineClipboardDocument } from 'react-icons/hi2';
 import EmptyState from '@/components/EmptyState';
-import { useError } from '@/context/error';
 
 const LinkPage = () => {
 	const router = useRouter();
@@ -17,6 +18,7 @@ const LinkPage = () => {
 	const { changeErrorState } = useError();
 	const inputRef = useRef<HTMLInputElement>();
 	const { data, isLoading } = useLink(id as string);
+	const { data: session } = useSession();
 	const [loading, setLoading] = useState<boolean>(false);
 	const [editable, setEditable] = useState<boolean>(false);
 
@@ -31,6 +33,7 @@ const LinkPage = () => {
 	}, [data]);
 
 	if (isLoading) return <PageLoader />;
+	if (!session) router.push('/login');
 	if (!data) return <EmptyState msg='No Link Found!' />;
 
 	const generatedUrl = `${window.location.origin}/api/${data?.User.username}/${data?.slug}`;

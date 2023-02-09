@@ -5,11 +5,15 @@ import InputGroup from '@/components/general/InputGroup';
 import Button from '@/components/general/Button';
 import Spinner from '@/components/general/Spinner';
 import { useError } from '@/context/error';
+import { useSession } from 'next-auth/react';
 
 const CraeteLink = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const router = useRouter();
 	const { changeErrorState } = useError();
+	const { data: session } = useSession();
+
+	if (!session) router.push('/login');
 
 	const handleCreateLink = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

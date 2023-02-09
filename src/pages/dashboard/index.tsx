@@ -6,10 +6,11 @@ import Dashboard from '@/layout/Dashboard';
 
 const DashboardPage = () => {
 	const { data: user, isLoading } = useMe();
-	const { status } = useSession();
+	const { data: session, status } = useSession();
 	const router = useRouter();
 
 	if (status === 'loading' || isLoading) return <PageLoader />;
+	if (!session) router.push('/login');
 	if (user && !user.username) router.push('/onboarding');
 
 	if (status === 'authenticated' && user) return <Dashboard user={user} />;

@@ -11,6 +11,7 @@ const OnboardingPage = () => {
 	const router = useRouter();
 
 	if (status === 'loading' || isLoading) return <PageLoader />;
+	if (!session) router.push('/login');
 	if (user && user.username) router.push('/dashboard');
 	return (
 		<section className='center min-h-screen -mt-28'>
