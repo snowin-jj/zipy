@@ -1,14 +1,31 @@
-import { useSession } from 'next-auth/react';
 import useSWR from 'swr';
-import useSWRImmutable from 'swr/immutable';
+import useImmutableSWR from 'swr/immutable';
 import fetcher from './fetcher';
 
 export const useLink = (id: string) => {
-	const { data, error, isLoading } = useSWRImmutable(`/link?id=${id}`, fetcher);
-	return { data, error, isLoading };
+	const {
+		data: link,
+		error,
+		isLoading,
+	} = useImmutableSWR(`/link?id=${id}`, fetcher);
+	return { link, error, isLoading };
 };
 
 export const useMe = () => {
-	const { data, error, isLoading } = useSWR(`/user`, fetcher);
-	return { data, error, isLoading };
+	const { data: user, error, isLoading, mutate } = useSWR('user', fetcher);
+
+	const loading = !user || isLoading;
+
+	async function mutateUser(data: unknown, options?: {}) {
+		await mutate(fetcher('user/', data, 'PUT'), {
+			...options,
+		});
+	}
+
+	return {
+		user,
+		error,
+		isLoading: loading,
+		mutateUser,
+	};
 };

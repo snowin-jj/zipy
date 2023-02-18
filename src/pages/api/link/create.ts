@@ -9,16 +9,16 @@ export default vaildate(
 		if (req.method !== 'POST')
 			return res.status(405).json({ message: 'Method not allowed' });
 
-		let { name, url, slug } = req.body;
+		let { title, url, slug } = req.body;
 
-		if (!name || !url)
+		if (!title || !url)
 			return res
 				.status(404)
 				.json({ message: 'Please provide the required fields' });
 
 		if (!slug) slug = nanoid(3);
 		const isSlugExist = await prisma.link.findFirst({
-			where: { slug, userId: user.id },
+			where: { slug, username: user.username },
 		});
 
 		if (isSlugExist)
@@ -27,10 +27,10 @@ export default vaildate(
 		try {
 			const link = await prisma.link.create({
 				data: {
-					name,
+					title,
 					url,
 					slug,
-					userId: user.id,
+					username: user.username,
 				},
 			});
 

@@ -1,21 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { useError } from '@/context/error';
 import { createLink } from '@/lib/mutations';
-import InputGroup from '@/components/general/InputGroup';
 import Button from '@/components/general/Button';
 import Spinner from '@/components/general/Spinner';
-import { useError } from '@/context/error';
-import { useSession } from 'next-auth/react';
+import InputGroup from '@/components/general/InputGroup';
 
 const CraeteLink = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 	const router = useRouter();
 	const { changeErrorState } = useError();
-	const { data: session } = useSession();
-
-	useEffect(() => {
-		if (!session) router.push('/login');
-	}, [router, session]);
 
 	const handleCreateLink = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -43,8 +37,8 @@ const CraeteLink = () => {
 			>
 				<h1 className='title'>Create New Link</h1>
 				<InputGroup
-					type='name'
-					name='name'
+					type='text'
+					name='title'
 					placeholder='eg: Instagram'
 					minLength={3}
 					required={true}

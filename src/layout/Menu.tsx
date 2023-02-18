@@ -1,8 +1,8 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import Link from 'next/link';
+import { signOut } from 'next-auth/react';
 import { MdClose } from 'react-icons/md';
 import Button from '@/components/general/Button';
-import { signOut } from 'next-auth/react';
 
 interface IMenuBarProps {
 	status: 'loading' | 'authenticated' | 'unauthenticated';

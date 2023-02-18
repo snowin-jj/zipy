@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import { useState } from 'react';
+import Link from 'next/link';
+import { signOut, useSession } from 'next-auth/react';
 import { MdMenu } from 'react-icons/md';
 import Menu from '@/layout/Menu';
 import Logo from '@/components/general/Logo';
 import Button from '@/components/general/Button';
-import { signOut, useSession } from 'next-auth/react';
 
 const Header = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);

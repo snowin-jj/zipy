@@ -1,8 +1,8 @@
-import Button from '@/components/general/Button';
 import Head from 'next/head';
 import { capitalize } from '@/lib/helper';
-import LinkWrapper from '@/components/LinkWrapper';
 import EmptyState from '@/components/EmptyState';
+import Button from '@/components/general/Button';
+import LinkWrapper from '@/components/LinkWrapper';
 
 const Dashboard = ({ user }) => {
 	return (
@@ -17,7 +17,7 @@ const Dashboard = ({ user }) => {
 					</p>
 					<h1 className='text-4xl md:text-6xl font-black'>Welcome back 🎉</h1>
 				</div>
-				{user?.links.length ? (
+				{user?.links?.length ? (
 					<LinkWrapper links={user?.links} />
 				) : (
 					<EmptyState msg='Your link box is empty' />

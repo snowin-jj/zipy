@@ -1,5 +1,5 @@
-import { capitalize } from '@/lib/helper';
 import React from 'react';
+import { capitalize } from '@/lib/helper';
 
 interface IInputProps {
 	value?: string;
