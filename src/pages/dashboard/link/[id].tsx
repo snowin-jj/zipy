@@ -48,7 +48,6 @@ const LinkPage = () => {
 					url: inputRef.current.value,
 				});
 			} catch (e) {
-				console.log(e.message);
 				changeErrorState({ isError: true, msg: e.message });
 			}
 		}
@@ -60,7 +59,6 @@ const LinkPage = () => {
 			await deleteLink(id as string);
 			await router.push('/dashboard');
 		} catch (e) {
-			console.log(e.message);
 			changeErrorState({ isError: true, msg: e.message });
 		}
 	};
