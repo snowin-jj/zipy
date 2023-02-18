@@ -1,5 +1,5 @@
-import { useError } from '@/context/error';
 import { BiErrorCircle } from 'react-icons/bi';
+import { useError } from '@/context/error';
 
 const ErrorBox = () => {
 	const { errorState } = useError();

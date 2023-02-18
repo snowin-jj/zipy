@@ -1,6 +1,12 @@
-export default async function fetcher(url: string, data?: unknown) {
+type HTTPMethods = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
+export default async function fetcher(
+	url: string,
+	data?: unknown,
+	method?: HTTPMethods
+) {
 	const options = {
-		method: data ? 'POST' : 'GET',
+		method,
 		credentials: 'include',
 		headers: {
 			'Content-Type': 'application/json',

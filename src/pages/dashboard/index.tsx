@@ -1,19 +1,15 @@
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
 import { useMe } from '@/lib/hooks';
-import PageLoader from '@/components/general/PageLoader';
 import Dashboard from '@/layout/Dashboard';
+import Onboard from '@/layout/Onboard';
+import PageLoader from '@/components/general/PageLoader';
 
 const DashboardPage = () => {
-	const { data: user, isLoading } = useMe();
-	const { data: session, status } = useSession();
-	const router = useRouter();
+	const { user, isLoading } = useMe();
 
-	if (status === 'loading' || isLoading) return <PageLoader />;
-	if (!session) router.push('/login');
-	if (user && !user.username) router.push('/onboarding');
+	if (isLoading) return <PageLoader />;
+	if (!user.username) return <Onboard />;
 
-	if (status === 'authenticated' && user) return <Dashboard user={user} />;
+	if (user) return <Dashboard user={user} />;
 };
 
 export default DashboardPage;

@@ -1,6 +1,6 @@
-import ErrorBox from '@/components/general/ErrorBox';
 import { Inter } from '@next/font/google';
 import Header from './Header';
+import ErrorBox from '@/components/general/ErrorBox';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 

@@ -4,8 +4,7 @@
 
 @layer base {
 	* {
-		@apply m-0 p-0 box-border;
-		@apply outline-primary-400 outline-offset-2;
+		@apply m-0 p-0 box-border outline-primary-400 outline-offset-2;
 	}
 
 	::-moz-selection {

@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import { updateUser } from '@/lib/mutations';
+import { useSession } from 'next-auth/react';
+import { useMe } from '@/lib/hooks';
+import { useError } from '@/context/error';
 import InputGroup from '@/components/general/InputGroup';
 import Button from '@/components/general/Button';
 import Spinner from '@/components/general/Spinner';
-import { useError } from '@/context/error';
 
-const Onboard = ({ session }) => {
+const Onboard = () => {
 	const [username, setUsername] = useState<string | undefined>();
 	const [loading, setLoading] = useState<boolean>(false);
-	const router = useRouter();
 	const { changeErrorState } = useError();
+	const { mutateUser } = useMe();
+	const { data: session } = useSession();
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setUsername(e.target.value);
@@ -20,10 +21,8 @@ const Onboard = ({ session }) => {
 		e.preventDefault();
 		setLoading(true);
 		try {
-			await updateUser({ username });
-			router.push('/dashboard');
+			await mutateUser({ username });
 		} catch (e) {
-			console.log(`${e.message}`);
 			changeErrorState({ isError: true, msg: e.message });
 		}
 
