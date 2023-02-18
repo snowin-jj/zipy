@@ -6,9 +6,8 @@ export default function Slug() {
 }
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-	const { username, slug } = params;
-
-	console.log(params);
+	const username: string = params.username.toString();
+	const slug: string = params.slug.toString();
 
 	if (!slug && !username)
 		return {

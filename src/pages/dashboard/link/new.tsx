@@ -22,7 +22,6 @@ const CraeteLink = () => {
 			await createLink(formData);
 			await router.push('/dashboard');
 		} catch (e) {
-			console.log(e.message);
 			changeErrorState({ isError: true, msg: e.message });
 		}
 
