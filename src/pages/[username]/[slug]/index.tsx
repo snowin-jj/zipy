@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 		};
 
 	const link = await prisma.link.findFirst({
-		where: { username: username as string, slug: slug as string },
+		where: { username: username.toString(), slug: slug.toString() },
 	});
 
 	if (link) {
