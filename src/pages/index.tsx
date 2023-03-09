@@ -17,7 +17,7 @@ export default function Home() {
 						Manage your socials, website, store, videos, music, podcast, events
 						and more.
 					</p>
-					<Button isLink={true} to='/dashboard'>
+					<Button isLink={true} to='/login'>
 						Get Started
 					</Button>
 				</div>
