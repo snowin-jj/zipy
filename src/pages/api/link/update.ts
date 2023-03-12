@@ -3,7 +3,7 @@ import { vaildate } from '@/lib/auth';
 import prisma from '@/lib/prisma';
 
 export default vaildate(async (req: NextApiRequest, res: NextApiResponse) => {
-	if (req.method !== 'POST')
+	if (req.method !== 'PUT')
 		return res.status(405).json({ message: 'Method not allowed' });
 
 	let { url, id } = req.body;

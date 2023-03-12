@@ -6,7 +6,7 @@ export const createLink = async (payload) => {
 };
 
 export const updateLink = async (payload) => {
-	const data = await fetcher('/link/update', payload);
+	const data = await fetcher('/link/update', payload, 'PUT');
 	return data;
 };
 
