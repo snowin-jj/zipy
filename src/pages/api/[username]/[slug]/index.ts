@@ -14,7 +14,7 @@ export default async function handler(
 			where: { username: username as string, slug: slug as string },
 		});
 
-		return res.redirect(link.url);
+		return res.redirect(link?.url as string);
 	} catch (e) {
 		return res.status(404).json({ message: 'link not found' });
 	}

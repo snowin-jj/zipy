@@ -41,11 +41,11 @@ const LinkPage = () => {
 		e.preventDefault();
 		setLoading(true);
 		setEditable(false);
-		if (inputRef.current.value !== '' && editable) {
+		if (inputRef.current?.value !== '' && editable) {
 			try {
 				await updateLink({
 					id,
-					url: inputRef.current.value,
+					url: inputRef.current?.value,
 				});
 			} catch (e) {
 				changeErrorState({ isError: true, msg: e.message });
@@ -108,7 +108,9 @@ const LinkPage = () => {
 							tw='w-fit icon-btn'
 							handleClick={() => {
 								setEditable(false);
-								inputRef.current.value = link?.url;
+								if (inputRef.current) {
+									inputRef.current.value = link?.url;
+								}
 							}}
 						>
 							<MdOutlineClose size={24} />
