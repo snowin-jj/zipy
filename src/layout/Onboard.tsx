@@ -38,7 +38,7 @@ const Onboard = () => {
 			>
 				<h1 className='title'>Choose your Username</h1>
 				<InputGroup
-					value={session?.user.email}
+					value={String(session?.user?.email)}
 					type='email'
 					name='Logged in as'
 					placeholder='eg: johndoe@gmail.com'
