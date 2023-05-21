@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
+import { Analytics } from '@vercel/analytics/react';
 import { ErrorProvider } from '@/context/error';
 import Layout from '@/layout/Layout';
 import '@/styles/globals.css';
@@ -26,6 +27,7 @@ export default function App({
 					<Layout>
 						<Component {...pageProps} />
 					</Layout>
+					<Analytics />
 				</ErrorProvider>
 			</SessionProvider>
 		</>
