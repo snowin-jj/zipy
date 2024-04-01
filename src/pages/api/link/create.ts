@@ -1,4 +1,4 @@
-import { User } from '@prisma/client';
+import { type user as User } from '@prisma/client';
 import { nanoid } from 'nanoid';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { vaildate } from '@/lib/auth';
